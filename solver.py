@@ -173,6 +173,16 @@ class Interactive():
             word_send_list.append(word_send)
             time_array_list.append(time_array)
             current_attemps_list.append(current_attemps)
+            if j ==5 and score != 1:
+                print('you lost :(')
+                toc_first_word = time.perf_counter()  
+                toc = time.perf_counter() 
+                time_list = [toc - tic] * len(score_list)
+                time_list_first_word = [toc_first_word - tic_first_word] * len(score_list)
+                df = pd.DataFrame(zip([id] * len(score_list), score_list, word_send_list, time_list, time_array_list, current_attemps_list, time_list_first_word, [game_len] * len(score_list),
+                [vow_len] * len(score_list), [False] * len(score_list)), columns = ['id', 'score', 'word_sent', 'total_time', 'date', 'attempts', 'time_find_word', 'length', 'vowels', 'win'])
+                df.to_csv('/home/valentina/SOFKA_CODIGO/words_bank_ultimo/'+str(id)+'.csv', index=False)
+
             
 
         toc_first_word = time.perf_counter()  
@@ -182,8 +192,8 @@ class Interactive():
         time_list_first_word = [toc_first_word - tic_first_word] * len(score_list)
 
         #Saving info in a dataframe
-        df = pd.DataFrame(zip([id] * len(score_list), score_list, word_send_list, time_list, time_array_list, current_attemps_list, time_list_first_word  ), columns = ['id', 'score', 'word_sent',
-                                         'total_time', 'time_array', 'attemps', 'time_find_word'])
-        df.to_csv('/home/valentina/SOFKA_CODIGO/csv_words_bank_new/'+str(id)+'.csv', index=False)
-        return df, id, score_list, word_send_list, time_list, time_array_list, current_attemps_list, time_list_first_word
+        df = pd.DataFrame(zip([id] * len(score_list), score_list, word_send_list, time_list, time_array_list, current_attemps_list, time_list_first_word, [game_len] * len(score_list),
+        [vow_len] * len(score_list), [True] * len(score_list)), columns = ['id', 'score', 'word_sent', 'total_time', 'date', 'attempts', 'time_find_word', 'length', 'vowels','win'])
+        df.to_csv('/home/valentina/SOFKA_CODIGO/words_bank_ultimo/'+str(id)+'.csv', index=False)
+        return df
 
