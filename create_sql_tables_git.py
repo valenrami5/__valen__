@@ -5,17 +5,20 @@ commands = (
 """CREATE TABLE games(
     game_id VARCHAR(50) PRIMARY KEY,
     word_to_guess VARCHAR(30),
+    total_time FLOAT,
     time_guess FLOAT ,
-    length INTEGER NOT NULL, 
-    attemps INTEGER NOT NULL,
+    attempts INTEGER NOT NULL,
+    length INTEGER NOT NULL,
+    vowels INTEGER NOT NULL,
     win BOOLEAN NOT NULL DEFAULT TRUE
 
 )""", 
 
-""" CREATE TABLE attemps ( 
+""" CREATE TABLE attempts ( 
 id serial PRIMARY KEY ,
-word_send VARCHAR(30) ,
-time_array TIMESTAMP NOT NULL ,
+word_sent VARCHAR(30) ,
+score FLOAT NOT NULL,
+date TIMESTAMP NOT NULL ,
 attempt INTEGER NOT NULL,
 game_id VARCHAR(50) NOT NULL,
 FOREIGN KEY (game_id) REFERENCES games (game_id)
