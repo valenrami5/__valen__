@@ -22,7 +22,7 @@ class IntoSql:
         for i in games:
             cursor.execute('''INSERT INTO games(game_id, word_to_guess, total_time, time_guess, attempts, length, vowels, win) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)''', i)
         for i in attempts:
-            cursor.execute("INSERT INTO attempts(word_sent, score, date, attempt, game_id) VALUES (%s, %s, %s, %s, %s)", i)
+            cursor.execute('''INSERT INTO attempts(word_sent, score, date, attempt, game_id) VALUES (%s, %s, %s, %s, %s)''', i)
         conn.commit()   
         # Closing the connection
         conn.close()
